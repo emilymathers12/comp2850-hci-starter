@@ -2,6 +2,8 @@ plugins {
     application
     kotlin("jvm") version "2.0.0"
     id("io.ktor.plugin") version "2.3.11"
+    id("org.jlleitschuh.gradle.ktlint") version "13.1.0"
+    id("io.gitlab.arturbosch.detekt") version "1.23.8"
 }
 
 group = "uk.ac.leeds.comp2850"
@@ -55,4 +57,18 @@ tasks.withType<JavaExec> {
 
 kotlin {
     jvmToolchain(17)
+}
+
+// Code quality: Detekt (static analysis)
+// Reports violations as warnings, doesn't fail build
+detekt {
+    config.setFrom(files("detekt.yml"))
+    buildUponDefaultConfig = true
+    ignoreFailures = true  // Report but don't fail build
+}
+
+// Code quality: ktlint (code style)
+// Reports violations as warnings, doesn't fail build
+configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+    ignoreFailures.set(true)  // Report but don't fail build
 }

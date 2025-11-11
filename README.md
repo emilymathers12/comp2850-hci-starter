@@ -247,6 +247,32 @@ starter-repo/
 ./gradlew clean
 ```
 
+### Code Quality (Optional)
+
+**Run all checks** (tests + linters):
+```bash
+./gradlew check
+```
+
+**Run individually**:
+```bash
+./gradlew test          # Integration tests
+./gradlew detekt        # Static analysis (reports warnings)
+./gradlew ktlintCheck   # Code style (reports warnings)
+```
+
+**Auto-fix formatting**:
+```bash
+./gradlew ktlintFormat
+```
+
+**Note**: Linters are configured to report violations as **warnings** rather than errors. Your build will succeed even with linting issues, but you'll see helpful feedback in the output. This helps you learn good practices without blocking your development during labs.
+
+**Linting rules configured for Ktor**:
+- Wildcard imports allowed for Ktor DSL packages (framework requirement)
+- `TooManyFunctions` threshold raised for route files
+- See `detekt.yml` and `.editorconfig` for full configuration
+
 ### Hot Reload
 
 **Templates**: Disabled in dev (see `Main.kt: cacheActive(false)`)
