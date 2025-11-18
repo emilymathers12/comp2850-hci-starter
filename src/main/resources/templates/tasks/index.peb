@@ -26,7 +26,7 @@
       {% else %}
         {% include "tasks/partials/view.peb" with {"task": task} %}
       {% endif %}
-    {% empty %}
+    {% else %}
       <li>No tasks yet. Add one above!</li>
     {% endfor %}
   </ul>
