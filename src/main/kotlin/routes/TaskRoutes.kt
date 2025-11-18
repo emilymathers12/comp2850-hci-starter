@@ -125,7 +125,7 @@ fun Route.taskRoutes() {
         }
 
         if (call.isHtmx()) {
-            val template = pebble.getTemplate("templates/tasks/partials/edit.peb")
+            val template = pebble.getTemplate("tasks/partials/edit.peb")
             val model = mapOf("task" to task, "error" to errorMessage)
             val writer = StringWriter()
             template.evaluate(writer, model)
@@ -137,7 +137,7 @@ fun Route.taskRoutes() {
                 "editingId" to id,
                 "errorMessage" to errorMessage
             )
-            val template = pebble.getTemplate("templates/tasks/index.peb")
+            val template = pebble.getTemplate("tasks/index.peb")
             val writer = StringWriter()
             template.evaluate(writer, model)
             call.respondText(writer.toString(), ContentType.Text.Html)
@@ -154,7 +154,7 @@ fun Route.taskRoutes() {
         if (newTitle.isBlank()) {
             if (call.isHtmx()) {
                 // HTMX path: return edit fragment with error
-                val template = pebble.getTemplate("templates/tasks/partials/edit.peb")
+                val template = pebble.getTemplate("tasks/partials/edit.peb")
                 val model = mapOf(
                     "task" to task,
                     "error" to "Title is required. Please enter at least one character."
@@ -174,7 +174,7 @@ fun Route.taskRoutes() {
 
         if (call.isHtmx()) {
             // HTMX path: return view fragment + OOB status
-            val viewTemplate = pebble.getTemplate("templates/tasks/partials/view.peb")
+            val viewTemplate = pebble.getTemplate("tasks/partials/view.peb")
             val viewWriter = StringWriter()
             viewTemplate.evaluate(viewWriter, mapOf("task" to task))
 
@@ -192,7 +192,7 @@ fun Route.taskRoutes() {
         val task = TaskRepository.find(id) ?: return@get call.respond(HttpStatusCode.NotFound)
 
     // HTMX path only (cancel is just a link to /tasks in no-JS)
-        val template = pebble.getTemplate("templates/tasks/partials/view.peb")
+        val template = pebble.getTemplate("tasks/partials/view.peb")
         val model = mapOf("task" to task)
         val writer = StringWriter()
         template.evaluate(writer, model)
