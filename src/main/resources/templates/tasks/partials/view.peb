@@ -1,4 +1,3 @@
-```html
 <li id="task-{{ task.id }}" class="task-view">
   <span class="task-title">{{ task.title }}</span>
 
@@ -16,4 +15,3 @@
     <button type="submit" aria-label="Delete task: {{ task.title }}">Delete</button>
   </form>
 </li>
-```
