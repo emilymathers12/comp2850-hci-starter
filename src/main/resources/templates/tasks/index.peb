@@ -22,9 +22,9 @@
   <ul id="task-list">
     {% for task in tasks %}
       {% if editingId and editingId == task.id %}
-        {% include "tasks/_edit.peb" with {"task": task, "error": errorMessage} %}
+        {% include "tasks/partials/edit.peb" with {"task": task, "error": errorMessage} %}
       {% else %}
-        {% include "tasks/_item.peb" with {"task": task} %}
+        {% include "tasks/partials/view.peb" with {"task": task} %}
       {% endif %}
     {% empty %}
       <li>No tasks yet. Add one above!</li>
