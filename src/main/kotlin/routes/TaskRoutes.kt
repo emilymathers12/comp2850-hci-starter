@@ -69,22 +69,15 @@ fun Route.taskRoutes() {
         val task = TaskRepository.add(title)
 
         if (call.isHtmx()) {
-            // Return HTML fragment for new task
-            val fragment = """<li id="task-${task.id}">
-                <span>${task.title}</span>
-                <form action="/tasks/${task.id}/delete" method="post" style="display: inline;"
-                    hx-post="/tasks/${task.id}/delete"
-                    hx-target="#task-${task.id}"
-                    hx-swap="outerHTML">
-                <button type="submit" aria-label="Delete task: ${task.title}">Delete</button>
-                </form>
-            </li>"""
+            val template = pebble.getTemplate("tasks/partials/view.peb")
+            val writer = StringWriter()
+            template.evaluate(writer, mapOf("task" to task))
+            val viewFragment = writer.toString()
 
             val status = """<div id="status" hx-swap-oob="true">Task "${task.title}" added successfully.</div>"""
 
-            return@post call.respondText(fragment + status, ContentType.Text.Html, HttpStatusCode.Created)
+            return@post call.respondText(viewFragment + status, ContentType.Text.Html, HttpStatusCode.Created)
         }
-
         call.respondRedirect("/tasks") // No-JS fallback
     }
 
