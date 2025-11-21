@@ -2,3 +2,9 @@ id,title,job_story,need,type,severity,inclusion_risk,evidence,notes
 1,Search by tag,JS‑1,filter tasks,functional,High,Motor: small targets,Time to complete (s), 
 2,Announce results,JS‑1,status,Medium,Screen reader: status,SR announces count, 
 3,Keyboard order,JS‑2,accessibility,High,Keyboard only path,Steps (no traps), 
+
+
+id,title,story_ref,story_type,need,type,severity,inclusion_risk,evidence,notes,candidate_fix
+9,Missing label on title input,audit#2,WCAG violation,Form accessibility,Accessibility,Critical,"SR,Keyboard","axe-report.md; WCAG 3.3.2 (A)",No <label> associated with input - SR announces "edit text" with no context,true
+11,Focus indicator low contrast,manual#7,WCAG violation,Keyboard navigation,Accessibility,Medium,Keyboard,"manual-wcag-checklist.md; WCAG 2.4.7 (AA)",Blue outline barely visible on light backgrounds,false
+12,No error message in no-JS path,manual#3,WCAG violation,Error handling,Accessibility,High,"Cognitive,SR","manual-wcag-checklist.md; WCAG 3.3.1 (A)",PRG redirect loses validation context,true
